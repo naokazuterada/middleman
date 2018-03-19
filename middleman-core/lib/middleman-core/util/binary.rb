@@ -32,7 +32,9 @@ module Middleman
         else
           dot_ext = ext.to_s[0] == '.' ? ext.dup : ".#{ext}"
 
-          if mime = ::Rack::Mime.mime_type(dot_ext, nil)
+          if filename.to_s.include?('source/wp/')
+            true
+          elsif mime = ::Rack::Mime.mime_type(dot_ext, nil)
             !nonbinary_mime?(mime)
           else
             file_contents_include_binary_bytes?(path.to_s)
